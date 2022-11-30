@@ -1,0 +1,63 @@
+diff --git a/node_modules/react-native-vision-camera/android/CMakeLists.txt b/node_modules/react-native-vision-camera/android/CMakeLists.txt
+index 4a37040..b0c5445 100644
+--- a/node_modules/react-native-vision-camera/android/CMakeLists.txt
++++ b/node_modules/react-native-vision-camera/android/CMakeLists.txt
+@@ -106,8 +106,8 @@ find_library(
+         NO_CMAKE_FIND_ROOT_PATH
+ )
+ find_library(
+-        FOLLY_JSON_LIB
+-        folly_json
++        FOLLY_RUNTIME_LIB
++        folly_runtime
+         PATHS ${LIBRN_DIR}
+         NO_CMAKE_FIND_ROOT_PATH
+ )
+@@ -154,6 +154,6 @@ target_link_libraries(
+         ${REANIMATED_LIB}
+         ${REACT_NATIVE_JNI_LIB}
+         ${FBJNI_LIB}
+-        ${FOLLY_JSON_LIB}
++        ${FOLLY_RUNTIME_LIB}
+         android
+ )
+diff --git a/node_modules/react-native-vision-camera/android/build.gradle b/node_modules/react-native-vision-camera/android/build.gradle
+index 725696c..0fd39f7 100644
+--- a/node_modules/react-native-vision-camera/android/build.gradle
++++ b/node_modules/react-native-vision-camera/android/build.gradle
+@@ -228,14 +228,24 @@ dependencies {
+     //noinspection GradleDynamicVersion
+     extractJNI("com.facebook.fbjni:fbjni:+")
+ 
+-    def rnAAR = fileTree("${nodeModules}/react-native/android").matching({ it.include "**/**/*.aar" }).singleFile
++    def buildType = "debug"
++    tasks.all({ task ->
++        if (task.name == "buildCMakeRelease") {
++            buildType = "release"
++        }
++    })
+     def jscAAR = fileTree("${nodeModules}/jsc-android/dist/org/webkit/android-jsc").matching({ it.include "**/**/*.aar" }).singleFile
+ 
+     def inputFile = file("${nodeModules}/react-native/package.json")
+     def json = new JsonSlurper().parseText(inputFile.text)
+     def reactNativeVersion = json.version as String
+     def (major, minor, patch) = reactNativeVersion.tokenize('.')
+-
++    def rnMinorVersion = Integer.parseInt(minor)
++    def rnAarMatcher = "**/react-native/**/*${buildType}.aar"
++     if (rnMinorVersion < 69) {
++        rnAarMatcher = "**/**/*.aar"
++    }
++    def rnAAR = fileTree("${nodeModules}/react-native/android").matching({ it.include rnAarMatcher }).singleFile
+     def jsEngine = FOR_HERMES ? "hermes" : "jsc"
+     def reaAAR = "${nodeModules}/react-native-reanimated/android/react-native-reanimated-${minor}-${jsEngine}.aar"
+ 
+@@ -285,7 +295,7 @@ if (ENABLE_FRAME_PROCESSORS) {
+   }
+ 
+   task downloadBoost(dependsOn: createNativeDepsDirectories, type: Download) {
+-    src("https://github.com/react-native-community/boost-for-react-native/releases/download/v${BOOST_VERSION.replace("_", ".")}-0/boost_${BOOST_VERSION}.tar.gz")
++    src("https://boostorg.jfrog.io/artifactory/main/release/${BOOST_VERSION.replace("_", ".")}/source/boost_${BOOST_VERSION}.tar.gz")
+     onlyIfNewer(true)
+     overwrite(false)
+     dest(boost_file)
