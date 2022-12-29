@@ -14,7 +14,7 @@
     "@react-navigation/native": "^6.0.13",
     "react": "18.0.0",
     "react-native": "0.69.0",
-    "react-native-reanimated": "^2.10.0",
+    "react-native-reanimated": "^2.13.0",
     "react-native-vision-camera": "^2.14.1",
     "vision-camera-face-detector": "github:bglgwyng/vision-camera-face-detector#fix-bounding-box",
     "react-native-static-safe-area-insets": "^2.2.0",
