@@ -12,13 +12,16 @@
   "dependencies": {
     "@react-native-community/blur": "^4.2.0",
     "@react-navigation/native": "^6.0.13",
+    "appcenter": "^4.4.5",
+    "appcenter-analytics": "^4.4.5",
+    "appcenter-crashes": "^4.4.5",
     "react": "18.0.0",
     "react-native": "0.69.0",
     "react-native-reanimated": "^2.10.0",
-    "react-native-vision-camera": "^2.14.1",
-    "vision-camera-face-detector": "github:bglgwyng/vision-camera-face-detector#fix-bounding-box",
     "react-native-static-safe-area-insets": "^2.2.0",
-    "react-native-vector-icons": "^9.2.0"
+    "react-native-vector-icons": "^9.2.0",
+    "react-native-vision-camera": "^2.14.1",
+    "vision-camera-face-detector": "github:bglgwyng/vision-camera-face-detector#fix-bounding-box"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
