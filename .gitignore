@@ -28,13 +28,12 @@ build/
 .aab
 .apk
 .idea
-.gradle
+
 local.properties
 *.iml
 *.hprof
 .cxx/
-*.jar
-!gradle/wrapper/gradle-wrapper.jar
+
 
 # node.js
 #
@@ -69,3 +68,6 @@ buck-out/
 
 # Ignore Gradle build output directory
 build
+
+# Ignore Gradle project-specific cache directory
+.gradle
