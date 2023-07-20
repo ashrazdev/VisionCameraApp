@@ -10,7 +10,7 @@
     "lint": "eslint ."
   },
   "dependencies": {
-    "@react-native-community/blur": "^4.2.0",
+    "@react-native-community/blur": "^4.3.0",
     "@react-navigation/native": "^6.0.13",
     "appcenter": "^4.4.5",
     "appcenter-analytics": "^4.4.5",
