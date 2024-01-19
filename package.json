@@ -12,9 +12,9 @@
   "dependencies": {
     "@react-native-community/blur": "^4.2.0",
     "@react-navigation/native": "^6.0.13",
-    "appcenter": "^4.4.5",
-    "appcenter-analytics": "^4.4.5",
-    "appcenter-crashes": "^4.4.5",
+    "appcenter": "^5.0.1",
+    "appcenter-analytics": "^5.0.1",
+    "appcenter-crashes": "^5.0.1",
     "react": "18.0.0",
     "react-native": "0.69.0",
     "react-native-reanimated": "^2.10.0",
